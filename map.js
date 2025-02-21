@@ -70,7 +70,7 @@ map.on('load', () => {
         .enter()
         .append('circle')
         .attr('r', 5)               // Radius of the circle
-        .attr('fill', 'steelblue')  // Circle fill color
+        .attr('fill', 'palevioletred')  // Circle fill color
         .attr('stroke', 'white')    // Circle border color
         .attr('stroke-width', 1)    // Circle border thickness
         .attr('opacity', 0.8)       // Circle opacity
@@ -131,3 +131,30 @@ map.on('load', () => {
         console.error('Error loading JSON:', error);
     });
 });
+
+let timeFilter = -1;
+
+const timeSlider = document.getElementById('time-slider');
+const selectedTime = document.getElementById('time-display'); 
+const anyTimeLabel = document.getElementById('no-filter');  
+
+function formatTime(minutes) {
+    const date = new Date(0, 0, 0, 0, minutes); 
+    return date.toLocaleString('en-US', { timeStyle: 'short' });
+}
+
+function updateTimeDisplay() {
+    timeFilter = Number(timeSlider.value);
+
+    if (timeFilter === -1) {
+        selectedTime.textContent = '';
+        anyTimeLabel.style.display = 'block';
+    } else {
+        selectedTime.textContent = formatTime(timeFilter);
+        anyTimeLabel.style.display = 'none'; 
+    }
+}
+
+timeSlider.addEventListener('input', updateTimeDisplay);
+
+updateTimeDisplay();

@@ -11,8 +11,17 @@
         <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
     </head>
     <body>
-        <h2>Take a Bike, Pal!</h2>
-        <h3>Tracking bicycle traffic in Boston throughout the day.</h3>
+        <h2>🚲 Take a Bike, Pal!</h2>
+        <header>
+            <div id="time-filter">
+                <label for="time-slider">Filter by time:</label>
+                <input type="range" id="time-slider" min="-1" max="1439" value="-1" />
+                <time id="time-display" style="display: block;"></time>
+                <em id="no-filter" style="display: none;">any time</em>
+            </div>
+            <h3>Tracking bicycle traffic in Boston throughout the day.</h3>
+        </header>
+        
         <div id="map">
             <svg></svg>
         </div>
