@@ -22,3 +22,45 @@ html, body {
     height: 100%;
     pointer-events: none
   }
+
+  body *:not(header *) {
+    --color-departures: steelblue;
+    --color-arrivals: palevioletred;
+    --color: color-mix(
+      in oklch,
+      var(--color-departures) calc(100% * var(--departure-ratio)),
+      var(--color-arrivals)
+    );
+    fill: var(--color);
+  }
+
+  .legend {
+    display: flex;
+    gap: 1px;
+    margin-block: 20px;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .legend > div {
+    flex: 1;
+    padding: 8px 20px;
+    text-align: center;
+    color: #ffffff;
+  }
+  
+  .legend > div[style="--departure-ratio: 1"] {
+    background-color: var(--color-departures);
+    color: #ffffff;
+  }
+  
+  .legend > div[style="--departure-ratio: 0.5"] {
+    background-color: var(--color);
+    color: #ffffff;
+  }
+
+  .legend > div[style="--departure-ratio: 0"] {
+    background-color: var(--color-arrivals);
+    color: #ffffff;
+  }
+  
